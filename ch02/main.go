@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/gwr0-0/jvmgo/ch02/classpath"
+)
 
 func main() {
 	cmd := parseCmd()
@@ -14,5 +17,5 @@ func main() {
 }
 
 func startJVM(cmd *Cmd) {
-	fmt.Printf("classpath:%s class:%s args:%v\n", cmd.cpOption, cmd.class, cmd.args)
+	cp := classpath.Parse()
 }

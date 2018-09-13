@@ -28,4 +28,16 @@ func startJVM(cmd *Cmd) {
 		return
 	}
 	fmt.Printf("class data:%v\n", classData)
+	encodedStr := DecimalByteSlice2HexString(classData)
+	fmt.Printf("class data BY 16:%v\n", encodedStr)
+}
+
+// 十进制切片数组转换为16进制字符串
+func DecimalByteSlice2HexString(DecimalSlice []byte) string {
+	var sa = make([]string, 0)
+	for _, v := range DecimalSlice {
+		sa = append(sa, fmt.Sprintf("%02X", v))
+	}
+	ss := strings.Join(sa, " ")
+	return ss
 }

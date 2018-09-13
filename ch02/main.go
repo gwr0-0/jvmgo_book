@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gwr0-0/jvmgo/ch02/classpath"
+	"strings"
 )
 
 func main() {
@@ -17,5 +18,14 @@ func main() {
 }
 
 func startJVM(cmd *Cmd) {
-	cp := classpath.Parse()
+	cp := classpath.Parse(cmd.XjreOption, cmd.cpOption)
+	fmt.Printf("classpath:%v class:%v args:%v\n", cp, cmd.class, cmd.args)
+
+	className := strings.Replace(cmd.class, ".", "/", -1)
+	classData, _, err := cp.ReadClass(className)
+	if err != nil {
+		fmt.Printf("Cloud not find or load main class %s\n", cmd.class)
+		return
+	}
+	fmt.Printf("class data:%v\n", classData)
 }

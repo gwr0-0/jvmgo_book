@@ -21,6 +21,8 @@ func (self *ConstantUtf8Info) readerInfo(reader *ClassReader) {
 
 // mutf8 -> utf16 -> utf32 -> string
 // see java.io.DataInputStream.readUTF(DataInput)
-func decodeMUTF8(bytearr []byte) string {
-
+// TODO 这里是简化版，字符串中不能包含null字符（代码点U+0000）或补充字符（代码点大于U+FFFF的Unicode字符）
+// 完整版见，https://github.com/gwr0-0/jvmgo-book/blob/master/v1/code/go/src/jvmgo/ch03/classfile/cp_utf8.go
+func decodeMUTF8(bytes []byte) string {
+	return string(bytes)
 }

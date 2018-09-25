@@ -44,7 +44,23 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 		return &ConstantIntegerInfo{}
 	case CONSTANT_Float:
 		return &ConstantFloatInfo{}
-
+	case CONSTANT_Long:
+		return &ConstantLongInfo{}
+	case CONSTANT_Double:
+		return &ConstantDoubleInfo{}
+	case CONSTANT_Utf8:
+		return &ConstantUtf8Info{}
+	case CONSTANT_String:
+		return &ConstantStringInfo{cp: cp}
+	case CONSTANT_Class:
+		return &ConstantClassInfo{cp: cp}
+	case CONSTANT_Fieldref:
+		return &ConstantFieldrefInfo{ConstantMemberrefInfo{cp: cp}}
+	case CONSTANT_Methodref:
+		return &ConstantInterfaceMethodrefInfo{ConstantMemberrefInfo{cp: cp}}
+	case CONSTANT_NameAndType:
+		return &ConstantNameAndTypeInfo{}
+	// TODO  CONSTANT_MethodHandle  CONSTANT_MethodType  CONSTANT_InvokeDynamic
 	default:
 		panic("java.lang.ClassFormatError: constant pool tag!")
 	}

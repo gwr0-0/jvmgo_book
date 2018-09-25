@@ -16,12 +16,20 @@ func readConstantPool(reader *ClassReader) ConstantPool {
 	cp := make([]ConstantInfo, cpCount)
 	for i := 1; i < cpCount; i++ {
 		cp[i] = readConstantInfo(reader, cp)
+		switch cp[i].(type) {
+		case *ConstantLongInfo, *ConstantDoubleInfo:
+			i++ //占两个位置
+		}
 	}
+	return cp
 }
 
 // 按索引查找常量
 func (self ConstantPool) getConstantInfo(index uint16) ConstantInfo {
-
+	if cpInfo := self[index]; cpInfo != nil {
+		return cpInfo
+	}
+	panic("Invalid constant pool index!")
 }
 
 // 从常量池查找字段或方法的名字和描述符

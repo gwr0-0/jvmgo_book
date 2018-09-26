@@ -1,5 +1,7 @@
 package classfile
 
+import "fmt"
+
 /*
 ClassFile {
     u4             magic;
@@ -36,7 +38,20 @@ type ClassFile struct {
 
 // 把[]byte解析成ClassFile结构体
 func Parse(classData []byte) (cf *ClassFile, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			var ok bool
+			err, ok = r.(error)
+			if !ok {
+				err = fmt.Errorf("%v", r)
+			}
+		}
+	}()
 
+	cr := &ClassReader{classData}
+	cf = &ClassFile{}
+	cf.read(cr)
+	return
 }
 
 func (self *ClassFile) read(reader *ClassReader) {

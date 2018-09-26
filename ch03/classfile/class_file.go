@@ -43,9 +43,9 @@ func (self *ClassFile) read(reader *ClassReader) {
 
 }
 
-// magic number，0xCAFFEBABE
+// magic number，0xCAFEBABE
 func (self *ClassFile) readAndCheckMagic(reader *ClassReader) {
-	const MagicNumber uint32 = 0xCAFFEBABE
+	const MagicNumber uint32 = 0xCAFEBABE
 	magic := reader.readUint32()
 	if magic != MagicNumber {
 		panic("java.lang.ClassFormatError: magic!")

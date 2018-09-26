@@ -41,5 +41,5 @@ func loadClass(className string, cp *classpath.Classpath) *classfile.ClassFile {
 
 func printClassInfo(cf *classfile.ClassFile) {
 
-	fmt.Println("version: %v.%v\n", cf.MajorVersion(), cf.MinorVersion())
+	fmt.Printf("version: %v.%v\n", cf.MajorVersion(), cf.MinorVersion())
 }

@@ -22,6 +22,7 @@ const (
 	CONSTANT_Utf8               = 1  // 1.0.2
 	CONSTANT_MethodHandle       = 15 // 7
 	CONSTANT_MethodType         = 16 // 7
+	CONSTANT_Dynamic            = 17 //11
 	CONSTANT_InvokeDynamic      = 18 // 7
 	CONSTANT_Module             = 19 // 9
 	CONSTANT_Package            = 20 // 9

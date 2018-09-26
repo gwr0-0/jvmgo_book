@@ -57,6 +57,7 @@ func Parse(classData []byte) (cf *ClassFile, err error) {
 func (self *ClassFile) read(reader *ClassReader) {
 	self.readAndCheckMagic(reader)
 	self.readAndCheckVersion(reader)
+	self.constantPool = readConstantPool(reader)
 }
 
 // magic number，0xCAFEBABE

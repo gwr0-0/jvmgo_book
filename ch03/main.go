@@ -42,4 +42,5 @@ func loadClass(className string, cp *classpath.Classpath) *classfile.ClassFile {
 func printClassInfo(cf *classfile.ClassFile) {
 	fmt.Printf("magic: %02X\n", cf.Magic())
 	fmt.Printf("version: %v.%v\n", cf.MajorVersion(), cf.MinorVersion())
+	fmt.Printf("constant_pool_count: %v\n", len(cf.ConstantPool()))
 }

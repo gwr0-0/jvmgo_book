@@ -55,7 +55,8 @@ func Parse(classData []byte) (cf *ClassFile, err error) {
 }
 
 func (self *ClassFile) read(reader *ClassReader) {
-
+	self.readAndCheckMagic(reader)
+	self.readAndCheckVersion(reader)
 }
 
 // magic number，0xCAFEBABE
@@ -65,6 +66,8 @@ func (self *ClassFile) readAndCheckMagic(reader *ClassReader) {
 	if magic != MagicNumber {
 		panic("java.lang.ClassFormatError: magic!")
 	}
+	self.magic = magic
+	return
 }
 
 // 版本号检查，从1.2开始次版本号都是0
@@ -80,6 +83,11 @@ func (self *ClassFile) readAndCheckVersion(reader *ClassReader) {
 		}
 	}
 	panic("java.lang.UnsupportedClassVersionError!")
+}
+
+// getter
+func (self *ClassFile) Magic() uint32 {
+	return self.magic
 }
 
 // getter

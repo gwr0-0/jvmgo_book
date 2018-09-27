@@ -61,6 +61,8 @@ func (self *ClassFile) read(reader *ClassReader) {
 	self.accessFlags = reader.readUint16()
 	self.thisClass = reader.readUint16()
 	self.superClass = reader.readUint16()
+	self.interfaces = reader.readUint16s()
+	self.fields = readMembers(reader, self.constantPool)
 }
 
 // magic number，0xCAFEBABE

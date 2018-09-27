@@ -46,4 +46,6 @@ func printClassInfo(cf *classfile.ClassFile) {
 	fmt.Printf("access flags: 0x%x\n", cf.AccessFlags())
 	fmt.Printf("this class: %v\n", cf.ClassName())
 	fmt.Printf("super class: %v\n", cf.SuperClassName())
+	fmt.Printf("interfaces: %v\n", cf.InterfaceNames())
+	fmt.Printf("fields count: %v\n", len(cf.Fields()))
 }

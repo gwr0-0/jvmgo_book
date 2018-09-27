@@ -43,4 +43,7 @@ func printClassInfo(cf *classfile.ClassFile) {
 	fmt.Printf("magic: %02X\n", cf.Magic())
 	fmt.Printf("version: %v.%v\n", cf.MajorVersion(), cf.MinorVersion())
 	fmt.Printf("constant_pool_count: %v\n", len(cf.ConstantPool()))
+	fmt.Printf("access flags: 0x%x\n", cf.AccessFlags())
+	fmt.Printf("this class: %v\n", cf.ClassName())
+	fmt.Printf("super class: %v\n", cf.SuperClassName())
 }

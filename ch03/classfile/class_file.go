@@ -135,7 +135,7 @@ func (self *ClassFile) SuperClassName() string {
 	if self.superClass > 0 {
 		return self.constantPool.getClassName(self.superClass)
 	}
-	return ""
+	return "只有java.lang.Object没有超类，superClass是0"
 }
 
 // 从常量池查找接口名

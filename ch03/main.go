@@ -48,4 +48,11 @@ func printClassInfo(cf *classfile.ClassFile) {
 	fmt.Printf("super class: %v\n", cf.SuperClassName())
 	fmt.Printf("interfaces: %v\n", cf.InterfaceNames())
 	fmt.Printf("fields count: %v\n", len(cf.Fields()))
+	for _, m := range cf.Fields() {
+		fmt.Printf("  %s\n", m.Name())
+	}
+	fmt.Printf("methods count: %v\n", len(cf.Methods()))
+	for _, m := range cf.Methods() {
+		fmt.Printf("  %s\n", m.Name())
+	}
 }

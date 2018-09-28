@@ -59,6 +59,8 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 		return &ConstantFieldrefInfo{ConstantMemberrefInfo{cp: cp}}
 	case CONSTANT_Methodref:
 		return &ConstantInterfaceMethodrefInfo{ConstantMemberrefInfo{cp: cp}}
+	case CONSTANT_InterfaceMethodref:
+		return &ConstantInterfaceMethodrefInfo{ConstantMemberrefInfo{cp: cp}}
 	case CONSTANT_NameAndType:
 		return &ConstantNameAndTypeInfo{}
 	// TODO  CONSTANT_MethodHandle  CONSTANT_MethodType  CONSTANT_InvokeDynamic

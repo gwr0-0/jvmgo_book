@@ -38,6 +38,14 @@ func newAttributeInfo(attrName string, attrLen uint32, cp ConstantPool) Attribut
 	// case "Code": return &CodeAttribute{}
 	case "SourceFile":
 		return &SourceFileAttribute{cp: cp}
+	case "ConstantValue":
+		return &ConstantValueAttribute{}
+
+	case "Deprecated":
+		return &DeprecatedAttribute{}
+	case "Synthetic":
+		return &SyntheticAttribute{}
+
 	default:
 		return &UnparsedAttribute{attrName, attrLen, nil}
 	}

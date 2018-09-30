@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gwr0-0/jvmgo-book/v1/code/go/src/jvmgo/ch04/rtda"
+	"github.com/gwr0-0/jvmgo/ch04/rtda"
 )
 
 func main() {

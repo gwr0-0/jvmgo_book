@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/gwr0-0/jvmgo/ch02/classpath"
-	"github.com/gwr0-0/jvmgo/ch03/classfile"
+	"github.com/gwr0-0/jvmgo/ch04/classfile"
+	"github.com/gwr0-0/jvmgo/ch04/classpath"
 	"strings"
 )
 

@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/gwr0-0/jvmgo-book/v1/code/go/src/jvmgo/ch04/rtda"
+	"github.com/gwr0-0/jvmgo/ch03/classfile"
+	"github.com/gwr0-0/jvmgo/ch03/classpath"
+	"strings"
 )
 
 func main() {
@@ -17,15 +19,40 @@ func main() {
 }
 
 func startJVM(cmd *Cmd) {
-	frame := rtda.NewFrame(100, 100)
-	testLocalVars(frame.LocalVars())
-	testOperandStack(frame.OperandStack())
+	cp := classpath.Parse(cmd.XjreOption, cmd.cpOption)
+	className := strings.Replace(cmd.class, ".", "/", -1)
+
+	cf := loadClass(className, cp)
+	fmt.Println(cmd.class)
+	printClassInfo(cf)
 }
 
-func testLocalVars(vars rtda.LocalVars) {
-
+func loadClass(className string, cp *classpath.Classpath) *classfile.ClassFile {
+	classData, _, err := cp.ReadClass(className)
+	if err != nil {
+		panic(err)
+	}
+	cf, err := classfile.Parse(classData)
+	if err != nil {
+		panic(err)
+	}
+	return cf
 }
 
-func testOperandStack(ops *rtda.OperandStack) {
-
+func printClassInfo(cf *classfile.ClassFile) {
+	fmt.Printf("magic: %02X\n", cf.Magic())
+	fmt.Printf("version: %v.%v\n", cf.MajorVersion(), cf.MinorVersion())
+	fmt.Printf("constant_pool_count: %v\n", len(cf.ConstantPool()))
+	fmt.Printf("access flags: 0x%x\n", cf.AccessFlags())
+	fmt.Printf("this class: %v\n", cf.ClassName())
+	fmt.Printf("super class: %v\n", cf.SuperClassName())
+	fmt.Printf("interfaces: %v\n", cf.InterfaceNames())
+	fmt.Printf("fields count: %v\n", len(cf.Fields()))
+	for _, m := range cf.Fields() {
+		fmt.Printf("  %s\n", m.Name())
+	}
+	fmt.Printf("methods count: %v\n", len(cf.Methods()))
+	for _, m := range cf.Methods() {
+		fmt.Printf("  %s\n", m.Name())
+	}
 }

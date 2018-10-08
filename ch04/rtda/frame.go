@@ -7,5 +7,8 @@ type Frame struct {
 }
 
 func NewFrame(maxLocals, maxStack uint) *Frame {
-
+	return &Frame{
+		localVars:    newLocalVars(maxLocals),   // 保存局部变量表指针
+		operandStack: newOperandStack(maxStack), // 保存操作数栈指针
+	}
 }

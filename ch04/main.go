@@ -23,7 +23,9 @@ func startJVM(cmd *Cmd) {
 }
 
 func testLocalVars(vars rtda.LocalVars) {
+	vars.SetInt(0, 100)
 
+	println(vars.GetInt(0))
 }
 
 func testOperandStack(ops *rtda.OperandStack) {

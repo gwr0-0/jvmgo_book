@@ -6,5 +6,5 @@ type OperandStack struct {
 }
 
 func newOperandStack(maxStack uint) *OperandStack {
-
+	return nil
 }

@@ -12,3 +12,11 @@ func NewFrame(maxLocals, maxStack uint) *Frame {
 		operandStack: newOperandStack(maxStack), // 保存操作数栈指针
 	}
 }
+
+// getters
+func (self *Frame) LocalVars() LocalVars {
+	return self.localVars
+}
+func (self *Frame) OperandStack() *OperandStack {
+	return self.operandStack
+}

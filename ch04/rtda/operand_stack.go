@@ -2,7 +2,7 @@ package rtda
 
 type OperandStack struct {
 	size  uint
-	slots []slot
+	slots []Slot
 }
 
 func newOperandStack(maxStack uint) *OperandStack {

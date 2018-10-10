@@ -41,5 +41,11 @@ func testLocalVars(vars rtda.LocalVars) {
 }
 
 func testOperandStack(ops *rtda.OperandStack) {
+	ops.PushInt(100)
+	ops.PushInt(-100)
+	ops.PushFloat(3.1415926)
 
+	println(ops.PopFloat())
+	println(ops.PopInt())
+	println(ops.PopInt())
 }

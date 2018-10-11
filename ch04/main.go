@@ -19,6 +19,7 @@ func main() {
 func startJVM(cmd *Cmd) {
 	frame := rtda.NewFrame(100, 100)
 	testLocalVars(frame.LocalVars())
+	println("~~~~~~~~~~~~~我是可爱的分割线~~~~~~~~~~~~")
 	testOperandStack(frame.OperandStack())
 }
 
@@ -43,9 +44,17 @@ func testLocalVars(vars rtda.LocalVars) {
 func testOperandStack(ops *rtda.OperandStack) {
 	ops.PushInt(100)
 	ops.PushInt(-100)
+	ops.PushLong(2997924580)
+	ops.PushLong(-2997924580)
 	ops.PushFloat(3.1415926)
+	ops.PushDouble(2.71828182845)
+	ops.PushRef(nil)
 
+	println(ops.PopRef())
+	println(ops.PopDouble())
 	println(ops.PopFloat())
+	println(ops.PopLong())
+	println(ops.PopLong())
 	println(ops.PopInt())
 	println(ops.PopInt())
 }

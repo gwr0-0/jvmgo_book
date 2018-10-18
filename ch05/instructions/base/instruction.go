@@ -7,19 +7,6 @@ type Instruction interface {
 	Execute(frame *rtda.Frame)            // 执行指令逻辑
 }
 
-/**
-nop
-Operation
-	Do nothing
-Format
-	nop
-Forms
-	nop = 0 (0x0)
-Operand Stack
-	No change
-Description
-	Do nothing.
-*/
 // 表示没有操作数的指令，所有没有定义任何字段
 type NoOperandsInstruction struct {
 }
@@ -39,5 +26,19 @@ func (self *BranchInstruction) FetchOperands(reader *BytecodeReader) {
 }
 
 type Index8Instruction struct {
-	Index uint
+	Index uint // 局部变量表索引
+}
+
+// 存储和加载类指令需要根据索引存取局部变量表，索引由单字节操作数给出
+func (self *Index8Instruction) FetchOperands(reader *BytecodeReader) {
+	self.Index = uint(reader.ReadUint8)
+}
+
+type Index16Instruction struct {
+	Index uint // 常量池索引
+}
+
+// 一些指令需要访问运行时常量池，常量池索引由两个字节操作数给出
+func (self *Index16Instruction) FetchOperands(reader *BytecodeReader) {
+	self.Index = uint(reader.ReadUint16())
 }

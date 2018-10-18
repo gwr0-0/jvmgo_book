@@ -31,7 +31,7 @@ type Index8Instruction struct {
 
 // 存储和加载类指令需要根据索引存取局部变量表，索引由单字节操作数给出
 func (self *Index8Instruction) FetchOperands(reader *BytecodeReader) {
-	self.Index = uint(reader.ReadUint8)
+	self.Index = uint(reader.ReadUint8())
 }
 
 type Index16Instruction struct {

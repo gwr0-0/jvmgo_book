@@ -27,3 +27,17 @@ type NoOperandsInstruction struct {
 func (self *NoOperandsInstruction) FetchOperands(reader *BytecodeReader) {
 	// nothing to do
 }
+
+// 跳转指令
+type BranchInstruction struct {
+	Offset int // 跳转偏移量
+}
+
+// 从字节码中读取一个int16整数，转成int，赋值给Offset
+func (self *BranchInstruction) FetchOperands(reader *BytecodeReader) {
+	self.Offset = int(reader.ReadInt16())
+}
+
+type Index8Instruction struct {
+	Index uint
+}

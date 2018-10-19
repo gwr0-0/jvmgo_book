@@ -1,5 +1,7 @@
 package constants
 
+import "github.com/gwr0-0/jvmgo/ch05/instructions/base"
+
 /**
 Operation
 	Push byte
@@ -16,6 +18,10 @@ Description
 */
 type BIPUSH struct {
 	val int8
+}
+
+func (self *BIPUSH) FetchOperands(reader *base.BytecodeReader) {
+	self.val = reader.ReadInt8()
 }
 
 /**
@@ -36,4 +42,8 @@ Description
 */
 type SIPUSH struct {
 	val int16
+}
+
+func (self *SIPUSH) FetchOperands(reader *base.BytecodeReader) {
+	self.val = reader.ReadInt16()
 }

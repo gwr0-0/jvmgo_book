@@ -1,8 +1,8 @@
 package loads
 
 import (
-	"github.com/gwr0-0/jvmgo/ch04/rtda"
 	"github.com/gwr0-0/jvmgo/ch05/instructions/base"
+	"github.com/gwr0-0/jvmgo/ch05/rtda"
 )
 
 /**

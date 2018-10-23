@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/gwr0-0/jvmgo/ch05/rtda"
+	"github.com/gwr0-0/jvmgo/ch05/classfile"
+	"github.com/gwr0-0/jvmgo/ch05/classpath"
+	"strings"
 )
 
 func main() {
@@ -16,45 +18,27 @@ func main() {
 	}
 }
 
+/**
+1. 读取并解析class文件
+2. 查找类的main方法
+3. 解释执行main方法
+*/
 func startJVM(cmd *Cmd) {
-	frame := rtda.NewFrame(100, 100)
-	testLocalVars(frame.LocalVars())
-	println("~~~~~~~~~~~~~我是可爱的分割线~~~~~~~~~~~~")
-	testOperandStack(frame.OperandStack())
+	cp := classpath.Parse(cmd.XjreOption, cmd.cpOption)
+	className := strings.Replace(cmd.class, ".", "/", -1)
+	cf := loadClass(className, cp)
+	mainMethod := getMainMethof(cf)
+	if mainMethod != nil {
+		interpret(mainMethod)
+	} else {
+		fmt.Printf("Main method not found in class %s\n", cmd.class)
+	}
 }
 
-func testLocalVars(vars rtda.LocalVars) {
-	vars.SetInt(0, 100)
-	vars.SetInt(1, -100)
-	vars.SetLong(2, 2997924580)
-	vars.SetLong(4, -2997924580)
-	vars.SetFloat(6, 3.1415926)
-	vars.SetDouble(7, 2.71828182845)
-	vars.SetRef(9, nil)
+func loadClass(className string, cp *classpath.Classpath) *classfile.ClassFile {
 
-	println(vars.GetInt(0))
-	println(vars.GetInt(1))
-	println(vars.GetLong(2))
-	println(vars.GetLong(4))
-	println(vars.GetFloat(6))
-	println(vars.GetDouble(7))
-	println(vars.GetRef(9))
 }
 
-func testOperandStack(ops *rtda.OperandStack) {
-	ops.PushInt(100)
-	ops.PushInt(-100)
-	ops.PushLong(2997924580)
-	ops.PushLong(-2997924580)
-	ops.PushFloat(3.1415926)
-	ops.PushDouble(2.71828182845)
-	ops.PushRef(nil)
+func getMainMethof(cf *classfile.ClassFile) *classfile.MemberInfo {
 
-	println(ops.PopRef())
-	println(ops.PopDouble())
-	println(ops.PopFloat())
-	println(ops.PopLong())
-	println(ops.PopLong())
-	println(ops.PopInt())
-	println(ops.PopInt())
 }

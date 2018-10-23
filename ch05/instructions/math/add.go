@@ -22,27 +22,20 @@ Description
 	Despite the fact that overflow may occur, execution of an iadd instruction never throws a run-time exception.
 
 Operation
-
-Add long
+	Add long
 Format
-
-
-ladd
+	ladd
 Forms
-
-ladd = 97 (0x61)
+	ladd = 97 (0x61)
 Operand Stack
-
-..., value1, value2 →
-
-..., result
+	..., value1, value2 →
+	..., result
 Description
-
-Both value1 and value2 must be of type long. The values are popped from the operand stack. The long result is value1 + value2. The result is pushed onto the operand stack.
-
-The result is the 64 low-order bits of the true mathematical result in a sufficiently wide two's-complement format, represented as a value of type long. If overflow occurs, the sign of the result may not be the same as the sign of the mathematical sum of the two values.
-
-Despite the fact that overflow may occur, execution of an ladd instruction never throws a run-time exception.
+	Both value1 and value2 must be of type long. The values are popped from the operand stack. The long result is value1 + value2.
+	The result is pushed onto the operand stack.
+	The result is the 64 low-order bits of the true mathematical result in a sufficiently wide two's-complement format, represented as a value of type long.
+	If overflow occurs, the sign of the result may not be the same as the sign of the mathematical sum of the two values.
+	Despite the fact that overflow may occur, execution of an ladd instruction never throws a run-time exception.
 
 Operation
 	Add float
@@ -105,7 +98,7 @@ Description
 type IADD struct {
 	base.NoOperandsInstruction
 }
-type DADD struct {
+type LADD struct {
 	base.NoOperandsInstruction
 }
 type FADD struct {
@@ -117,10 +110,24 @@ type DADD struct {
 
 func (self *IADD) Execute(frame *rtda.Frame) {
 	stack := frame.OperandStack()
-	v2 := stack.PopInt()
 	v1 := stack.PopInt()
+	v2 := stack.PopInt()
 	result := v1 + v2
 	stack.PushInt(result)
+}
+func (self *LADD) Execute(frame *rtda.Frame) {
+	stack := frame.OperandStack()
+	v1 := stack.PopLong()
+	v2 := stack.PopLong()
+	result := v1 + v2
+	stack.PushLong(result)
+}
+func (self *FADD) Execute(frame *rtda.Frame) {
+	stack := frame.OperandStack()
+	v1 := stack.PopFloat()
+	v2 := stack.PopFloat()
+	result := v1 + v2
+	stack.PushFloat(result)
 }
 func (self *DADD) Execute(frame *rtda.Frame) {
 	stack := frame.OperandStack()

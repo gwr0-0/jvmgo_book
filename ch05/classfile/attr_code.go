@@ -23,6 +23,7 @@ type CodeAttribute struct {
 	cp             ConstantPool
 	maxStack       uint16                 // 操作数栈的最大深度
 	maxLocals      uint16                 // 局部变量表大小
+	codeLength     uint32                 // 字节码长度
 	code           []byte                 // 字节码
 	exceptionTable []*ExceptionTableEntry // 异常处理表
 	attributes     []AttributeInfo        // 属性表
@@ -33,6 +34,9 @@ func (self *CodeAttribute) MaxStack() uint {
 }
 func (self *CodeAttribute) MaxLocals() uint {
 	return uint(self.maxLocals)
+}
+func (self *CodeAttribute) CodeLength() uint {
+	return uint(self.codeLength)
 }
 func (self *CodeAttribute) Code() []byte {
 	return self.code
@@ -51,8 +55,8 @@ type ExceptionTableEntry struct {
 func (self *CodeAttribute) readInfo(reader *ClassReader) {
 	self.maxStack = reader.readUint16()
 	self.maxLocals = reader.readUint16()
-	codeLength := reader.readUint32()
-	self.code = reader.readBytes(codeLength)
+	self.codeLength = reader.readUint32()
+	self.code = reader.readBytes(self.codeLength)
 	self.exceptionTable = readExceptionTable(reader)
 	self.attributes = readAttributes(reader, self.cp)
 }

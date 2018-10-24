@@ -23,3 +23,9 @@ func (self *Frame) LocalVars() LocalVars {
 func (self *Frame) OperandStack() *OperandStack {
 	return self.operandStack
 }
+func (self *Frame) Thread() *Thread {
+	return self.thread
+}
+func (self *Frame) NextPC() int {
+	return self.nextPC
+}

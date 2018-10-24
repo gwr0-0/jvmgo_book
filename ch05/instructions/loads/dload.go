@@ -68,12 +68,12 @@ func (self *DLOAD) Execute(frame *rtda.Frame) {
 func (self *DLOAD_0) Execute(frame *rtda.Frame) {
 	_dload(frame, 0)
 }
-func (self *DLOAD_0) Execute(frame *rtda.Frame) {
+func (self *DLOAD_1) Execute(frame *rtda.Frame) {
 	_dload(frame, 1)
 }
-func (self *DLOAD_0) Execute(frame *rtda.Frame) {
+func (self *DLOAD_2) Execute(frame *rtda.Frame) {
 	_dload(frame, 2)
 }
-func (self *DLOAD_0) Execute(frame *rtda.Frame) {
+func (self *DLOAD_3) Execute(frame *rtda.Frame) {
 	_dload(frame, 3)
 }

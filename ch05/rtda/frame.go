@@ -29,3 +29,6 @@ func (self *Frame) Thread() *Thread {
 func (self *Frame) NextPC() int {
 	return self.nextPC
 }
+func (self *Frame) SetNextPC(nextPC int) {
+	self.nextPC = nextPC
+}

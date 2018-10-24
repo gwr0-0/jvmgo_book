@@ -35,14 +35,15 @@ func readAttribute(reader *ClassReader, cp ConstantPool) AttributeInfo {
 // 创建具体的属性实例
 func newAttributeInfo(attrName string, attrLen uint32, cp ConstantPool) AttributeInfo {
 	switch attrName {
-	// case "Code": return &CodeAttribute{}
-	case "SourceFile":
-		return &SourceFileAttribute{cp: cp}
+	case "Code":
+		return &CodeAttribute{cp: cp}
 	case "ConstantValue":
 		return &ConstantValueAttribute{}
-
 	case "Deprecated":
 		return &DeprecatedAttribute{}
+
+	case "SourceFile":
+		return &SourceFileAttribute{cp: cp}
 	case "Synthetic":
 		return &SyntheticAttribute{}
 

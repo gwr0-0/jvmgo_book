@@ -1,6 +1,9 @@
 package constants
 
-import "github.com/gwr0-0/jvmgo/ch05/instructions/base"
+import (
+	"github.com/gwr0-0/jvmgo/ch05/instructions/base"
+	"github.com/gwr0-0/jvmgo/ch05/rtda"
+)
 
 /**
 Operation
@@ -22,6 +25,10 @@ type BIPUSH struct {
 
 func (self *BIPUSH) FetchOperands(reader *base.BytecodeReader) {
 	self.val = reader.ReadInt8()
+}
+func (self *BIPUSH) Execute(frame *rtda.Frame) {
+	i := int32(self.val)
+	frame.OperandStack().PushInt(i)
 }
 
 /**
@@ -46,4 +53,8 @@ type SIPUSH struct {
 
 func (self *SIPUSH) FetchOperands(reader *base.BytecodeReader) {
 	self.val = reader.ReadInt16()
+}
+func (self *SIPUSH) Execute(frame *rtda.Frame) {
+	i := int32(self.val)
+	frame.OperandStack().PushInt(i)
 }

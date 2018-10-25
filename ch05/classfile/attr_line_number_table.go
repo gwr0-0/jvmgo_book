@@ -18,8 +18,8 @@ type LineNumberTableAttribute struct {
 }
 
 type LineNumberTableEntry struct {
-	startPc    uint16
-	lineNumber uint16
+	startPc    uint16 // 一条指令的开始索引（字节码数组中的索引号）
+	lineNumber uint16 // 源代码中的行号
 }
 
 func (self *LineNumberTableAttribute) readInfo(reader *ClassReader) {

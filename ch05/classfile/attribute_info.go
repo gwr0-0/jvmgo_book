@@ -41,7 +41,12 @@ func newAttributeInfo(attrName string, attrLen uint32, cp ConstantPool) Attribut
 		return &ConstantValueAttribute{}
 	case "Deprecated":
 		return &DeprecatedAttribute{}
-
+	case "LineNumberTable":
+		return &LineNumberTableAttribute{}
+	case "LocalVariableTable":
+		return &LocalVariableTableAttribute{}
+	case "LocalVariableTypeTable":
+		return &LocalVariableTypeTableAttribute{}
 	case "SourceFile":
 		return &SourceFileAttribute{cp: cp}
 	case "Synthetic":

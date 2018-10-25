@@ -13,7 +13,7 @@ LocalVariableTable_attribute {
     } local_variable_table[local_variable_table_length];
 }
 
-存放方法的局部变量信息，属于调试信息
+用于调试器，以获取在方法运行时局部变量的信息
 */
 
 type LocalVariableTableAttribute struct {
@@ -21,11 +21,11 @@ type LocalVariableTableAttribute struct {
 }
 
 type LocalVariableTableEntry struct {
-	startPc         uint16
-	length          uint16
-	nameIndex       uint16
-	descriptorIndex uint16
-	index           uint16
+	startPc         uint16 // 记录该局部变量的有值范围，字节码数组中的索引范围[start_pc, start_pc+length)
+	length          uint16 // 记录该局部变量的有值范围，字节码数组中的索引范围[start_pc, start_pc+length)
+	nameIndex       uint16 // constant_pool中索引，CONSTANT_Utf8_info类型，记录该项代表的局部变量名。
+	descriptorIndex uint16 // constant_pool中索引，CONSTANT_Utf8_info类型，记录该项代表的局部变量的字段描述符
+	index           uint16 // 记录该项代表的局部变量在方法的局部变量数组中的索引
 }
 
 func (self *LocalVariableTableAttribute) readInfo(reader *ClassReader) {

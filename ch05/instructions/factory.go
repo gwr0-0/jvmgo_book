@@ -19,6 +19,15 @@ var (
 	iconst_3    = &ICONST_3{}
 	iconst_4    = &ICONST_4{}
 	iconst_5    = &ICONST_5{}
+	lconst_0    = &LCONST_0{}
+	lconst_1    = &LCONST_1{}
+	fconst_0    = &FCONST_0{}
+	fconst_1    = &FCONST_1{}
+	fconst_2    = &FCONST_2{}
+	dconst_0    = &DCONST_0{}
+	dconst_1    = &DCONST_1{}
+	bipush      = &BIPUSH{}
+	sipush      = &SIPUSH{}
 
 	iload_1 = &ILOAD_1{}
 	iload_2 = &ILOAD_2{}
@@ -50,6 +59,24 @@ func NewInstruction(opcode byte) base.Instruction {
 		return iconst_4
 	case 0x08:
 		return iconst_5
+	case 0x09:
+		return lconst_0
+	case 0x0a:
+		return lconst_1
+	case 0x0b:
+		return fconst_0
+	case 0x0c:
+		return fconst_1
+	case 0x0d:
+		return fconst_2
+	case 0x0e:
+		return dconst_0
+	case 0x0f:
+		return dconst_1
+	case 0x10:
+		return bipush
+	case 0x11:
+		return sipush
 
 	case 0x1b:
 		return iload_1

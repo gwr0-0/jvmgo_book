@@ -6,6 +6,7 @@ import (
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/constants"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/loads"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/math"
+	. "github.com/gwr0-0/jvmgo/ch05/instructions/stack"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/stores"
 )
 
@@ -80,6 +81,16 @@ var (
 	astore_1 = &ASTORE_1{}
 	astore_2 = &ASTORE_2{}
 	astore_3 = &ASTORE_3{}
+
+	pop     = &POP{}
+	pop2    = &POP2{}
+	dup     = &DUP{}
+	dup_x1  = &DUP_X1{}
+	dup_x2  = &DUP_X2{}
+	dup2    = &DUP2{}
+	dup2_x1 = &DUP2_X1{}
+	dup2_x2 = &DUP2_X2{}
+	swap    = &SWAP{}
 
 	iadd = &IADD{}
 )
@@ -230,6 +241,25 @@ func NewInstruction(opcode byte) base.Instruction {
 		return astore_3
 
 		// TODO 0x4f ~ 0x56
+
+	case 0x57:
+		return pop
+	case 0x58:
+		return pop2
+	case 0x59:
+		return dup
+	case 0x5a:
+		return dup_x1
+	case 0x5b:
+		return dup_x2
+	case 0x5c:
+		return dup2
+	case 0x5d:
+		return dup_x1
+	case 0x5e:
+		return dup_x2
+	case 0x5f:
+		return swap
 
 	case 0x60:
 		return iadd

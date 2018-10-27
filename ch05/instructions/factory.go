@@ -55,9 +55,31 @@ var (
 	aload_2 = &ALOAD_2{}
 	aload_3 = &ALOAD_3{}
 
+	istore   = &ISTORE{}
+	lstore   = &LSTORE{}
+	fstore   = &FSTORE{}
+	dstore   = &DSTORE{}
+	astore   = &ASTORE{}
+	istore_0 = &ISTORE_0{}
 	istore_1 = &ISTORE_1{}
 	istore_2 = &ISTORE_2{}
 	istore_3 = &ISTORE_3{}
+	lstore_0 = &LSTORE_0{}
+	lstore_1 = &LSTORE_1{}
+	lstore_2 = &LSTORE_2{}
+	lstore_3 = &LSTORE_3{}
+	fstore_0 = &FSTORE_0{}
+	fstore_1 = &FSTORE_1{}
+	fstore_2 = &FSTORE_2{}
+	fstore_3 = &FSTORE_3{}
+	dstore_0 = &DSTORE_0{}
+	dstore_1 = &DSTORE_1{}
+	dstore_2 = &DSTORE_2{}
+	dstore_3 = &DSTORE_3{}
+	astore_0 = &ASTORE_0{}
+	astore_1 = &ASTORE_1{}
+	astore_2 = &ASTORE_2{}
+	astore_3 = &ASTORE_3{}
 
 	iadd = &IADD{}
 )
@@ -100,6 +122,8 @@ func NewInstruction(opcode byte) base.Instruction {
 		return bipush
 	case 0x11:
 		return sipush
+
+		// TODO 0x12 ~ 0x14
 
 	case 0x15:
 		return iload
@@ -152,12 +176,60 @@ func NewInstruction(opcode byte) base.Instruction {
 	case 0x2d:
 		return aload_3
 
+		// TODO 0x2e ~ 0x35
+
+	case 0x36:
+		return istore
+	case 0x37:
+		return lstore
+	case 0x38:
+		return fstore
+	case 0x39:
+		return dstore
+	case 0x3a:
+		return astore
+	case 0x3b:
+		return istore_0
 	case 0x3c:
 		return istore_1
 	case 0x3d:
 		return istore_2
 	case 0x3e:
 		return istore_3
+	case 0x3f:
+		return lstore_0
+	case 0x40:
+		return lstore_1
+	case 0x41:
+		return lstore_2
+	case 0x42:
+		return lstore_3
+	case 0x43:
+		return fstore_0
+	case 0x44:
+		return fstore_1
+	case 0x45:
+		return fstore_2
+	case 0x46:
+		return fstore_3
+	case 0x47:
+		return dstore_0
+	case 0x48:
+		return dstore_1
+	case 0x49:
+		return dstore_2
+	case 0x4a:
+		return dstore_3
+	case 0x4b:
+		return astore_0
+	case 0x4c:
+		return astore_1
+	case 0x4d:
+		return astore_2
+	case 0x4e:
+		return astore_3
+
+		// TODO 0x4f ~ 0x56
 
 	case 0x60:
 		return iadd

@@ -93,6 +93,9 @@ var (
 	swap    = &SWAP{}
 
 	iadd = &IADD{}
+	ladd = &LADD{}
+	fadd = &FADD{}
+	dadd = &DADD{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -255,14 +258,21 @@ func NewInstruction(opcode byte) base.Instruction {
 	case 0x5c:
 		return dup2
 	case 0x5d:
-		return dup_x1
+		return dup2_x1
 	case 0x5e:
-		return dup_x2
+		return dup2_x2
 	case 0x5f:
 		return swap
 
 	case 0x60:
 		return iadd
+	case 0x61:
+		return ladd
+	case 0x62:
+		return fadd
+	case 0x63:
+		return dadd
+
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))
 	}

@@ -96,6 +96,10 @@ var (
 	ladd = &LADD{}
 	fadd = &FADD{}
 	dadd = &DADD{}
+	isub = &ISUB{}
+	lsub = &LSUB{}
+	fsub = &FSUB{}
+	dsub = &DSUB{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -272,6 +276,14 @@ func NewInstruction(opcode byte) base.Instruction {
 		return fadd
 	case 0x63:
 		return dadd
+	case 0x64:
+		return isub
+	case 0x65:
+		return lsub
+	case 0x66:
+		return fsub
+	case 0x67:
+		return dsub
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

@@ -100,6 +100,10 @@ var (
 	lsub = &LSUB{}
 	fsub = &FSUB{}
 	dsub = &DSUB{}
+	imul = &IMUL{}
+	lmul = &LMUL{}
+	fmul = &FMUL{}
+	dmul = &DMUL{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -284,6 +288,14 @@ func NewInstruction(opcode byte) base.Instruction {
 		return fsub
 	case 0x67:
 		return dsub
+	case 0x68:
+		return imul
+	case 0x69:
+		return lmul
+	case 0x6a:
+		return fmul
+	case 0x6b:
+		return dmul
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

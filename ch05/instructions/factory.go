@@ -104,6 +104,10 @@ var (
 	lmul = &LMUL{}
 	fmul = &FMUL{}
 	dmul = &DMUL{}
+	idiv = &IDIV{}
+	ldiv = &LDIV{}
+	fdiv = &FDIV{}
+	ddiv = &DDIV{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -296,6 +300,14 @@ func NewInstruction(opcode byte) base.Instruction {
 		return fmul
 	case 0x6b:
 		return dmul
+	case 0x6c:
+		return idiv
+	case 0x6d:
+		return ldiv
+	case 0x6e:
+		return fdiv
+	case 0x6f:
+		return ddiv
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

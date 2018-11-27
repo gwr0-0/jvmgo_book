@@ -9,7 +9,7 @@ import (
 imul = 104 (0x68)
 lmul = 105 (0x69)
 fmul = 106 (0x6a)
-fmul = 106 (0x6a)
+dmul = 107 (0x6b)
 */
 
 type IMUL struct {

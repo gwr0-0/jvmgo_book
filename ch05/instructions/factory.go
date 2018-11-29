@@ -108,6 +108,10 @@ var (
 	ldiv = &LDIV{}
 	fdiv = &FDIV{}
 	ddiv = &DDIV{}
+	irem = &IREM{}
+	lrem = &LREM{}
+	frem = &FREM{}
+	drem = &DREM{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -308,6 +312,14 @@ func NewInstruction(opcode byte) base.Instruction {
 		return fdiv
 	case 0x6f:
 		return ddiv
+	case 0x70:
+		return irem
+	case 0x71:
+		return lrem
+	case 0x72:
+		return frem
+	case 0x73:
+		return drem
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

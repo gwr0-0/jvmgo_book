@@ -112,6 +112,10 @@ var (
 	lrem = &LREM{}
 	frem = &FREM{}
 	drem = &DREM{}
+	ineg = &INEG{}
+	lneg = &LNEG{}
+	fneg = &FNEG{}
+	dneg = &DNEG{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -320,6 +324,14 @@ func NewInstruction(opcode byte) base.Instruction {
 		return frem
 	case 0x73:
 		return drem
+	case 0x74:
+		return ineg
+	case 0x75:
+		return lneg
+	case 0x76:
+		return fneg
+	case 0x77:
+		return dneg
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

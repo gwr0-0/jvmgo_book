@@ -92,30 +92,36 @@ var (
 	dup2_x2 = &DUP2_X2{}
 	swap    = &SWAP{}
 
-	iadd = &IADD{}
-	ladd = &LADD{}
-	fadd = &FADD{}
-	dadd = &DADD{}
-	isub = &ISUB{}
-	lsub = &LSUB{}
-	fsub = &FSUB{}
-	dsub = &DSUB{}
-	imul = &IMUL{}
-	lmul = &LMUL{}
-	fmul = &FMUL{}
-	dmul = &DMUL{}
-	idiv = &IDIV{}
-	ldiv = &LDIV{}
-	fdiv = &FDIV{}
-	ddiv = &DDIV{}
-	irem = &IREM{}
-	lrem = &LREM{}
-	frem = &FREM{}
-	drem = &DREM{}
-	ineg = &INEG{}
-	lneg = &LNEG{}
-	fneg = &FNEG{}
-	dneg = &DNEG{}
+	iadd  = &IADD{}
+	ladd  = &LADD{}
+	fadd  = &FADD{}
+	dadd  = &DADD{}
+	isub  = &ISUB{}
+	lsub  = &LSUB{}
+	fsub  = &FSUB{}
+	dsub  = &DSUB{}
+	imul  = &IMUL{}
+	lmul  = &LMUL{}
+	fmul  = &FMUL{}
+	dmul  = &DMUL{}
+	idiv  = &IDIV{}
+	ldiv  = &LDIV{}
+	fdiv  = &FDIV{}
+	ddiv  = &DDIV{}
+	irem  = &IREM{}
+	lrem  = &LREM{}
+	frem  = &FREM{}
+	drem  = &DREM{}
+	ineg  = &INEG{}
+	lneg  = &LNEG{}
+	fneg  = &FNEG{}
+	dneg  = &DNEG{}
+	ishl  = &ISHL{}
+	lshl  = &LSHL{}
+	ishr  = &ISHR{}
+	lshr  = &LSHR{}
+	iushr = &IUSHR{}
+	lushr = &LUSHR{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -332,6 +338,18 @@ func NewInstruction(opcode byte) base.Instruction {
 		return fneg
 	case 0x77:
 		return dneg
+	case 0x78:
+		return ishl
+	case 0x79:
+		return lshl
+	case 0x7a:
+		return ishr
+	case 0x7b:
+		return lshr
+	case 0x7c:
+		return iushr
+	case 0x7d:
+		return lushr
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

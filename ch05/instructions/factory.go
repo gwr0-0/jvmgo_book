@@ -122,6 +122,8 @@ var (
 	lshr  = &LSHR{}
 	iushr = &IUSHR{}
 	lushr = &LUSHR{}
+	iand  = &IAND{}
+	land  = &LAND{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -350,6 +352,10 @@ func NewInstruction(opcode byte) base.Instruction {
 		return iushr
 	case 0x7d:
 		return lushr
+	case 0x7e:
+		return iand
+	case 0x7f:
+		return land
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

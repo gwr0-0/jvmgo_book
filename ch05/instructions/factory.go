@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gwr0-0/jvmgo/ch05/instructions/base"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/constants"
+	. "github.com/gwr0-0/jvmgo/ch05/instructions/conversions"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/loads"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/math"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/stack"
@@ -129,6 +130,10 @@ var (
 	ixor  = &IXOR{}
 	lxor  = &LXOR{}
 	iinc  = &IINC{}
+
+	d2i = &D2I{}
+	d2l = &D2L{}
+	d2f = &D2F{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -371,6 +376,13 @@ func NewInstruction(opcode byte) base.Instruction {
 		return lxor
 	case 0x84:
 		return iinc
+
+	case 0x8e:
+		return d2i
+	case 0x8f:
+		return d2l
+	case 0x90:
+		return d2f
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

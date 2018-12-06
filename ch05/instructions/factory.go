@@ -131,9 +131,15 @@ var (
 	lxor  = &LXOR{}
 	iinc  = &IINC{}
 
+	i2l = &I2L{}
+	i2f = &I2F{}
+	i2d = &I2D{}
 	d2i = &D2I{}
 	d2l = &D2L{}
 	d2f = &D2F{}
+	i2b = &I2B{}
+	i2c = &I2C{}
+	i2s = &I2S{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -377,12 +383,24 @@ func NewInstruction(opcode byte) base.Instruction {
 	case 0x84:
 		return iinc
 
+	case 0x85:
+		return i2l
+	case 0x86:
+		return i2f
+	case 0x87:
+		return i2d
 	case 0x8e:
 		return d2i
 	case 0x8f:
 		return d2l
 	case 0x90:
 		return d2f
+	case 0x91:
+		return i2b
+	case 0x92:
+		return i2c
+	case 0x93:
+		return i2s
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

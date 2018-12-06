@@ -128,6 +128,7 @@ var (
 	lor   = &LOR{}
 	ixor  = &IXOR{}
 	lxor  = &LXOR{}
+	iinc  = &IINC{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -368,6 +369,8 @@ func NewInstruction(opcode byte) base.Instruction {
 		return ixor
 	case 0x83:
 		return lxor
+	case 0x84:
+		return iinc
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

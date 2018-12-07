@@ -134,6 +134,9 @@ var (
 	i2l = &I2L{}
 	i2f = &I2F{}
 	i2d = &I2D{}
+	l2i = &L2I{}
+	l2f = &L2F{}
+	l2d = &L2D{}
 	d2i = &D2I{}
 	d2l = &D2L{}
 	d2f = &D2F{}
@@ -389,6 +392,13 @@ func NewInstruction(opcode byte) base.Instruction {
 		return i2f
 	case 0x87:
 		return i2d
+	case 0x88:
+		return l2i
+	case 0x89:
+		return l2f
+	case 0x8a:
+		return l2d
+
 	case 0x8e:
 		return d2i
 	case 0x8f:

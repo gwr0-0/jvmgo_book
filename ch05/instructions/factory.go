@@ -3,6 +3,7 @@ package instructions
 import (
 	"fmt"
 	"github.com/gwr0-0/jvmgo/ch05/instructions/base"
+	. "github.com/gwr0-0/jvmgo/ch05/instructions/comparisons"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/constants"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/conversions"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/loads"
@@ -131,21 +132,40 @@ var (
 	lxor  = &LXOR{}
 	iinc  = &IINC{}
 
-	i2l = &I2L{}
-	i2f = &I2F{}
-	i2d = &I2D{}
-	l2i = &L2I{}
-	l2f = &L2F{}
-	l2d = &L2D{}
-	f2i = &F2I{}
-	f2l = &F2L{}
-	f2d = &F2D{}
-	d2i = &D2I{}
-	d2l = &D2L{}
-	d2f = &D2F{}
-	i2b = &I2B{}
-	i2c = &I2C{}
-	i2s = &I2S{}
+	i2l       = &I2L{}
+	i2f       = &I2F{}
+	i2d       = &I2D{}
+	l2i       = &L2I{}
+	l2f       = &L2F{}
+	l2d       = &L2D{}
+	f2i       = &F2I{}
+	f2l       = &F2L{}
+	f2d       = &F2D{}
+	d2i       = &D2I{}
+	d2l       = &D2L{}
+	d2f       = &D2F{}
+	i2b       = &I2B{}
+	i2c       = &I2C{}
+	i2s       = &I2S{}
+	lcmp      = &LCMP{}
+	fcmpl     = &FCMPL{}
+	fcmpg     = &FCMPG{}
+	dcmpl     = &DCMPL{}
+	dcmpg     = &DCMPG{}
+	ifeq      = &IFEQ{}
+	ifne      = &IFNE{}
+	iflt      = &IFLT{}
+	ifge      = &IFGE{}
+	ifgt      = &IFGT{}
+	ifle      = &IFLE{}
+	if_icmpeq = &IF_ICMPEQ{}
+	if_icmpne = &IF_ICMPNE{}
+	if_icmplt = &IF_ICMPLT{}
+	if_icmpge = &IF_ICMPGE{}
+	if_icmpgt = &IF_ICMPGT{}
+	if_icmple = &IF_ICMPLE{}
+	if_acmpeq = &IF_ACMPEQ{}
+	if_acmpne = &IF_ACMPNE{}
 )
 
 func NewInstruction(opcode byte) base.Instruction {
@@ -419,6 +439,44 @@ func NewInstruction(opcode byte) base.Instruction {
 		return i2c
 	case 0x93:
 		return i2s
+	case 0x94:
+		return lcmp
+	case 0x95:
+		return fcmpl
+	case 0x96:
+		return fcmpg
+	case 0x97:
+		return dcmpl
+	case 0x98:
+		return dcmpg
+	case 0x99:
+		return ifeq
+	case 0x9a:
+		return ifne
+	case 0x9b:
+		return iflt
+	case 0x9c:
+		return ifge
+	case 0x9d:
+		return ifgt
+	case 0x9e:
+		return ifle
+	case 0x9f:
+		return if_icmpeq
+	case 0xa0:
+		return if_icmpne
+	case 0xa1:
+		return if_icmplt
+	case 0xa2:
+		return if_icmpge
+	case 0xa3:
+		return if_icmpgt
+	case 0xa4:
+		return if_icmple
+	case 0xa5:
+		return if_acmpeq
+	case 0xa6:
+		return if_acmpne
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))

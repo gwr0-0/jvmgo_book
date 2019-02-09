@@ -5,6 +5,7 @@ import (
 	"github.com/gwr0-0/jvmgo/ch05/instructions/base"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/comparisons"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/constants"
+	. "github.com/gwr0-0/jvmgo/ch05/instructions/control"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/conversions"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/loads"
 	. "github.com/gwr0-0/jvmgo/ch05/instructions/math"
@@ -477,6 +478,8 @@ func NewInstruction(opcode byte) base.Instruction {
 		return if_acmpeq
 	case 0xa6:
 		return if_acmpne
+	case 0xa7:
+		return &GOTO{}
 
 	default:
 		panic(fmt.Errorf("Unsupported opcode: 0x%x!", opcode))
